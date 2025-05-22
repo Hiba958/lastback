@@ -21,3 +21,18 @@ exports.getLatestSensorData = async (req, res) => {
     res.status(500).json({ error: "Erreur lors de la récupération" });
   }
 };
+
+// Contrôler un appareil (LED ou ventilateur)
+exports.controlDevice = async (req, res) => {
+  try {
+    const { device, state } = req.body;
+    if (!device || state === undefined) {
+      return res.status(400).json({ error: "Device and state are required" });
+    }
+    // Store or process the control command (e.g., save to a database or broadcast)
+    console.log(`Control command: ${device} -> ${state ? 'ON' : 'OFF'}`);
+    res.status(200).json({ message: `Commande envoyée: ${device} -> ${state ? 'ON' : 'OFF'}` });
+  } catch (error) {
+    res.status(500).json({ error: "Erreur lors du contrôle de l'appareil" });
+  }
+};
