@@ -5,6 +5,7 @@ const authRoutes = require('./routes/authRoutes'); // Importe correctement les r
 const userRoutes = require("./routes/userRoutes"); // Import des routes
 const reservationRoutes = require('./routes/reservationRoutes');
 const deviceRoutes = require('./routes/deviceRoutes');
+const sensorRoutes = require('./routes/sensorRoutes'); // Changed from deviceRoutes
 const app = express(); // Déclaration de 'app'
 const PORT = 5001; // Assure-toi que c'est le même port que dans ton fetch()
 app.use(cors()); // Maintenant on peut utiliser cors()
@@ -24,7 +25,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/devices', deviceRoutes);
 app.use('/api/reservations', reservationRoutes);
-
+app.use('/api/devices', sensorRoutes);
 app.get('/', (req, res) => {
     res.send('pfe back is running !');
 });
