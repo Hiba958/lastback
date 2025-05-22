@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { addSensorData, getLatestSensorData } = require('../controllers/sensorController');
 
-router.post('/data', addSensorData); // Changed to /data
-router.get('/control', getLatestSensorData); // Changed to /control
+router.post('/add', addSensorData);           // Appelé par ESP32
+router.get('/latest', getLatestSensorData);   // Appelé par le frontend
 
 module.exports = router;
