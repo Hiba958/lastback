@@ -5,11 +5,14 @@ const { addSensorData, getLatestSensorData } = require('../controllers/sensorCon
 // Stockage des états des LEDs (persistant en mémoire)
 let ledStates = { red: false, yellow: false, green: false };
 
-router.post('/add', addSensorData);           // Appelé par ESP32
-router.get('/latest', getLatestSensorData);   // Appelé par le frontend
+// Endpoint pour ajouter les données des capteurs (utilisé par l’Arduino)
+router.post('/devices/add', addSensorData);
+
+// Endpoint pour récupérer les dernières données (utilisé par le frontend)
+router.get('/sensors/latest', getLatestSensorData);
 
 // Endpoint pour recevoir les commandes de contrôle
-router.post('/control', (req, res) => {
+router.post('/sensors/control', (req, res) => {
     try {
         const { red, yellow, green } = req.body;
         ledStates = {
@@ -26,7 +29,7 @@ router.post('/control', (req, res) => {
 });
 
 // Endpoint pour envoyer les états des LEDs à l’Arduino
-router.get('/control', (req, res) => {
+router.get('/sensors/control', (req, res) => {
     try {
         res.status(200).json(ledStates);
     } catch (error) {
