@@ -5,11 +5,11 @@ const { addSensorData, getLatestSensorData } = require('../controllers/sensorCon
 // Stockage des états des LEDs (persistant en mémoire)
 let ledStates = { red: false, yellow: false, green: false };
 
-// Endpoint pour ajouter les données des capteurs (utilisé par l’Arduino)
+// Endpoint pour ajouter les données des capteurs
 router.post('/devices/add', addSensorData);
 
-// Endpoint pour récupérer les dernières données (utilisé par le frontend)
-router.get('/sensors/latest', getLatestSensorData);
+// Endpoint pour récupérer les dernières données
+router.get('/devices/latest', getLatestSensorData);
 
 // Endpoint pour recevoir les commandes de contrôle
 router.post('/sensors/control', (req, res) => {
