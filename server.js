@@ -25,7 +25,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/devices', deviceRoutes);
 app.use('/api/reservations', reservationRoutes);
-app.use('/api/devices', sensorRoutes);
+app.use('/api/sensors', sensorRoutes);
 app.get('/', (req, res) => {
     res.send('pfe back is running !');
 });
